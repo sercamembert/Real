@@ -16,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-primary bg-background min-h-screen w-screen text-dark">
-        <NavMobile />
-        {children}
+        <div className="px-[15px] md:px-0">
+          <NavMobile />
+          {children}
+        </div>
         <Navbar />
       </body>
     </html>

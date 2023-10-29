@@ -3,7 +3,7 @@ import React from "react";
 interface Props {}
 
 const page = () => {
-  return <div></div>;
+  return <div>Sigm in</div>;
 };
 
 export default page;
