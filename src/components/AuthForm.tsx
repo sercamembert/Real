@@ -10,6 +10,7 @@ import { signIn, useSession } from "next-auth/react";
 import { toast } from "@/hooks/use-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -67,6 +68,7 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
+            router.refresh();
             router.push("/");
           }
         })
@@ -95,6 +97,7 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
+            router.refresh();
             router.push("/");
           }
         })
@@ -154,9 +157,12 @@ const AuthForm = () => {
             className="w-[100%] rounded-[7px]"
           />
           {variant === "LOGIN" && (
-            <p className="text-textGray text-xs mt-1 pl-1 hover:text-dark cursor-pointer w-[110px]">
+            <Link
+              href="/forgot-password"
+              className="text-textGray text-xs mt-1 pl-1 hover:text-dark cursor-pointer w-[110px]"
+            >
               Forgot password?
-            </p>
+            </Link>
           )}
         </div>
 
