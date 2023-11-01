@@ -78,6 +78,7 @@ const EmailForm = ({ token }: Props) => {
         placeholder="Enter new password"
         className="w-[100%] rounded-[7px]"
         value={password}
+        type="password"
       />
       <Input
         disabled={mutation.isPending}
@@ -87,6 +88,7 @@ const EmailForm = ({ token }: Props) => {
         placeholder="Confirm new password"
         className="w-[100%] rounded-[7px]"
         value={matchingPassword}
+        type="password"
       />
       <Button
         className="w-full rounded-[7px]"
