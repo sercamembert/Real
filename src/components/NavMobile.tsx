@@ -8,7 +8,7 @@ interface Props {}
 
 const NavMobile = () => {
   return (
-    <div className="flex md:hidden py-3 pr-[25px] items-center justify-between fixed top-0 z-10 w-full">
+    <div className="flex md:hidden py-3 pr-[25px] items-center justify-between fixed top-0 z-10 w-full bg-background">
       <Link href="/">
         <Logo />
       </Link>

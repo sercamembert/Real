@@ -8,7 +8,7 @@ interface Props {}
 
 const page = () => {
   return (
-    <div className="flex flex-col items-start gap-1">
+    <div className="flex h-screen flex-col justify-center gap-1">
       <Editor />
 
       <div className="w-full flex justify-end">
