@@ -20,7 +20,7 @@ const Navbar = async () => {
         <Link href="/">
           <Home width={35} height={35} />
         </Link>
-        <Link href="/add">
+        <Link href="/create">
           <PlusSquare width={35} height={35} />
         </Link>
 
@@ -70,7 +70,7 @@ const Navbar = async () => {
         <Notifications />
 
         <Link
-          href="/add"
+          href="/create"
           className="flex lg:gap-2 items-center mt-4 lg:hover:bg-gray-100 lg:w-full lg:p-2 lg:rounded-xl"
         >
           <PlusSquare width={35} height={35} />

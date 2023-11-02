@@ -24,7 +24,9 @@ export default function RootLayout({
           <AuthContext>
             <div className="px-[15px] md:px-0">
               <NavMobile />
-              {children}
+              <div className="md:pl-24 lg:pl-56 py-[80px] w-full h-full flex items-center justify-center ">
+                {children}
+              </div>
             </div>
             <Navbar />
             <Toaster />
