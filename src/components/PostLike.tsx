@@ -58,9 +58,9 @@ const PostLike = ({ post, userId }: Props) => {
     },
   });
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1 font-semibold bg-red-100  p-1 rounded-xl">
       <Heart
-        className="text-red-600 cursor-pointer"
+        className=" cursor-pointer hover:fill-red-600 hover:text-red-600"
         color={isLiked ? "#dc2626" : "#000"}
         fill={isLiked ? "#dc2626" : "none"}
         onClick={() => !isRequesting && mutation.mutate({ isLiked, postId })}
