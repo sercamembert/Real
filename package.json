@@ -1,5 +1,11 @@
 {
   "name": "real-web-app",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false,
+    "child_process": false
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -66,6 +72,7 @@
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "prisma": "^5.5.2",
+    "raw-loader": "^4.0.2",
     "tailwindcss": "^3",
     "typescript": "^5"
   }
