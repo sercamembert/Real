@@ -8,11 +8,12 @@ import { LogoSmall } from "./Logo";
 import Notifications from "./Notifications";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { Avatar, AvatarImage } from "./ui/avatar";
+import UserAvatar from "./UserAvatar";
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
   return (
     <div
-      className="w-full md:w-24 lg:w-56 xl:w-80 h-16 md:h-full fixed bottom-0 md:left-0 z-10 bg-white border-t-[1px] md:border-t-0 md:border-r-[1px] border-outlineGray
+      className=" w-full md:w-24 lg:w-56 xl:w-80 h-16 md:h-full fixed bottom-0 md:left-0 z-10 bg-white border-t-[1px] md:border-t-0 md:border-r-[1px] border-outlineGray
     flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start px-14 md:px-2 lg:px-5
     "
     >
@@ -30,14 +31,14 @@ const Navbar = async () => {
           </Link>
         ) : (
           <Link href="/profile" className="">
-            <Avatar className="w-[35px] h-[35px]">
-              <AvatarImage
-                src={
-                  currentUser?.image ||
-                  "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-                }
-              />
-            </Avatar>
+            <UserAvatar
+              image={
+                currentUser?.image ||
+                "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
+              }
+              w={40}
+              h={40}
+            />
           </Link>
         )}
       </div>
