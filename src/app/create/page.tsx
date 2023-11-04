@@ -8,14 +8,9 @@ interface Props {}
 
 const page = () => {
   return (
-    <div className="flex h-screen flex-col justify-center gap-1">
+    <div className="flex h-full flex-col justify-center gap-1">
       <Editor />
 
-      <div className="w-full flex justify-end">
-        <Button type="submit" className="w-full" form="post-form">
-          Post
-        </Button>
-      </div>
       <Link
         href="/sign-in"
         className="text-textGray text-xs hover:text-dark cursor-pointer items-center flex"
