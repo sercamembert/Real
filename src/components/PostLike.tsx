@@ -14,7 +14,7 @@ interface ExtendedPost extends Post {
 
 interface Props {
   post: ExtendedPost;
-  userId: string | undefined;
+  userId: string | undefined | null;
 }
 const PostLike = ({ post, userId }: Props) => {
   const { loginToast } = useCustomToast();
