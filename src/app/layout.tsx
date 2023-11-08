@@ -19,12 +19,12 @@ export default function RootLayout({
   const queryClient = new QueryClient();
   return (
     <html lang="en">
-      <body className="font-primary bg-background  text-dark">
+      <body className="dark:bg-black font-primary bg-background  text-dark dark:text-background">
         <Providers>
           <AuthContext>
             <div className="px-[15px] md:px-0">
               <NavMobile />
-              <div className="my-[80px]  w-full h-full flex items-center justify-center ">
+              <div className="my-[100px] md:pl-[80px]  w-full h-full flex items-center justify-center ">
                 {children}
               </div>
             </div>

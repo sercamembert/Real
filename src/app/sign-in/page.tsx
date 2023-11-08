@@ -13,7 +13,7 @@ const page = () => {
             Welcome back to
           </p>
 
-          <div className="text-dark font-secoundary font-semibold text-[32px] lg:text-[45px] flex items-end">
+          <div className=" font-secoundary font-semibold text-[32px] lg:text-[45px] flex items-end">
             Real<p className="text-logoYellow">.</p>
           </div>
         </div>

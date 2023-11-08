@@ -8,6 +8,7 @@ import { LikeRequest } from "@/lib/validators/like";
 import axios, { AxiosError } from "axios";
 import useCustomToast from "@/hooks/use-custom-toast";
 import { toast } from "@/hooks/use-toast";
+import { useTheme } from "next-themes";
 interface ExtendedPost extends Post {
   likes: Like[];
 }
@@ -17,6 +18,7 @@ interface Props {
   userId: string | undefined | null;
 }
 const PostLike = ({ post, userId }: Props) => {
+  const { theme } = useTheme();
   const { loginToast } = useCustomToast();
   const postId = post.id;
   const [isLiked, setIsLiked] = useState(
@@ -58,10 +60,18 @@ const PostLike = ({ post, userId }: Props) => {
     },
   });
   return (
-    <div className="flex items-center gap-1 font-semibold bg-red-100  p-1 rounded-xl">
+    <div className="flex items-center gap-1 font-semibold bg-red-100 dark:bg-inherit  p-1 rounded-xl">
       <Heart
-        className=" cursor-pointer hover:fill-red-600 hover:text-red-600"
-        color={isLiked ? "#dc2626" : "#000"}
+        className=" cursor-pointer hover:fill-red-600 hover:text-red-600 dark:text-background"
+        color={
+          theme === "dark" && isLiked
+            ? "none"
+            : theme === "dark"
+            ? "#fff"
+            : isLiked
+            ? "#dc2626"
+            : "#000"
+        }
         fill={isLiked ? "#dc2626" : "none"}
         onClick={() => !isRequesting && mutation.mutate({ isLiked, postId })}
         width={25}

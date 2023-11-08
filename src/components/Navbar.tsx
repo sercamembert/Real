@@ -1,4 +1,4 @@
-import { Bell, Home, PlusSquare, Search } from "lucide-react";
+import { Bell, Home, Menu, PlusSquare, Search } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -9,12 +9,13 @@ import Notifications from "./Notifications";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import UserAvatar from "./UserAvatar";
+import More from "./More";
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
   return (
     <div
       className=" w-full md:w-24 lg:w-56 xl:w-80 h-16 md:h-full fixed bottom-0 md:left-0 z-10 bg-white border-t-[1px] md:border-t-0 md:border-r-[1px] border-outlineGray
-    flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start px-14 md:px-2 lg:px-5
+    flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start px-6 md:px-2 lg:px-5 dark:bg-black
     "
     >
       <div className="flex items-center justify-between w-full md:hidden">
@@ -24,7 +25,7 @@ const Navbar = async () => {
         <Link href="/create">
           <PlusSquare width={35} height={35} />
         </Link>
-
+        <Notifications />
         {!currentUser ? (
           <Link href="sign-in">
             <Button>Sign In</Button>
@@ -43,7 +44,7 @@ const Navbar = async () => {
         )}
       </div>
 
-      <div className="hidden md:flex flex-col gap-3 py-3 items-center lg:items-start w-full">
+      <div className="hidden md:flex flex-col gap-3 py-3 items-center lg:items-start w-full h-full">
         <Link href="/" className="inline lg:hidden p-2">
           <LogoSmall />
         </Link>
@@ -54,25 +55,22 @@ const Navbar = async () => {
 
         <Link
           href="/"
-          className="flex gap-2 items-center mt-4 lg:hover:bg-gray-100 lg:w-full lg:p-2 lg:rounded-xl"
+          className="flex gap-2 items-center mt-4 lg:hover:bg-gray-100 dark:lg:hover:bg-dark lg:w-full lg:p-2 lg:rounded-xl"
         >
           <Home width={35} height={35} />
           <p className="hidden text-xl font-medium lg:inline pt-1">Home</p>
         </Link>
 
-        <Link
-          href="/"
-          className="flex gap-2 items-center mt-4 lg:hover:bg-gray-100 lg:w-full lg:p-2 lg:rounded-xl"
-        >
+        <div className="flex gap-2 items-center mt-4 lg:hover:bg-gray-100 dark:lg:hover:bg-dark lg:w-full lg:p-2 lg:rounded-xl cursor-pointer">
           <Search width={35} height={35} />
           <p className="hidden text-xl font-medium lg:inline pt-1">Search</p>
-        </Link>
+        </div>
 
         <Notifications />
 
         <Link
           href="/create"
-          className="flex lg:gap-2 items-center mt-4 lg:hover:bg-gray-100 lg:w-full lg:p-2 lg:rounded-xl"
+          className="flex lg:gap-2 items-center mt-4 lg:hover:bg-gray-100 dark:lg:hover:bg-dark lg:w-full lg:p-2 lg:rounded-xl"
         >
           <PlusSquare width={35} height={35} />
           <p className="hidden text-xl font-medium lg:inline pt-1">Create</p>
@@ -87,7 +85,7 @@ const Navbar = async () => {
         ) : (
           <Link
             href={`/profile/${currentUser.id}`}
-            className="flex lg:gap-2 items-center mt-4 lg:hover:bg-gray-100 lg:w-full lg:p-2 lg:rounded-xl"
+            className="flex lg:gap-2 items-center mt-4 lg:hover:bg-gray-100 dark:lg:hover:bg-dark lg:w-full lg:p-2 lg:rounded-xl"
           >
             <Avatar className="w-[35px] h-[35px]">
               <AvatarImage
@@ -100,6 +98,7 @@ const Navbar = async () => {
             <p className="hidden text-xl font-medium lg:inline pt-1">Profile</p>
           </Link>
         )}
+        <More />
       </div>
     </div>
   );

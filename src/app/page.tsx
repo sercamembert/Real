@@ -5,13 +5,7 @@ import { signOut } from "next-auth/react";
 interface Props {}
 
 const page = () => {
-  return (
-    <div className="flex items-center justify-center">
-      <Button onClick={() => signOut()} className="w-full">
-        log out
-      </Button>
-    </div>
-  );
+  return <div className="flex items-center justify-center"></div>;
 };
 
 export default page;

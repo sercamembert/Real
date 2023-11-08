@@ -68,6 +68,7 @@ const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId }) => {
             onClick={() => {
               comment.mutate({ postId, text: input, replyToId });
             }}
+            className="dark:bg-black"
           >
             Post
           </Button>

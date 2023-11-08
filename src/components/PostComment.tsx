@@ -82,18 +82,18 @@ const PostComment = ({ comment, postId }: PostCommentProps) => {
           </p>
         </div>
       </div>
-      <p className="text-sm text-zinc-900 mt-2">{comment.text}</p>
+      <p className="text-sm  mt-2">{comment.text}</p>
 
       <div className="flex gap-2 items-center flex-wrap mt-1">
         <div
           onClick={() => {
-            if (!session) {
+            if (session == null) {
               loginToast();
               return;
             }
             setIsReplying(true);
           }}
-          className="flex items-center gap-1 bg-gray-100 cursor-pointer hover:bg-gray-200 p-1 rounded-lg"
+          className="flex items-center gap-1 bg-gray-100 dark:bg-zinc-900 cursor-pointer hover:bg-gray-200 p-1 rounded-lg"
         >
           <MessageSquare className="h-4 w-4 mr-1.5" />
           <p className="text-xs">Reply</p>
@@ -118,6 +118,7 @@ const PostComment = ({ comment, postId }: PostCommentProps) => {
                     setIsReplying(false);
                     setInput("");
                   }}
+                  className="dark:bg-black"
                 >
                   Cancel
                 </Button>
@@ -132,6 +133,7 @@ const PostComment = ({ comment, postId }: PostCommentProps) => {
                   }}
                   isLoading={mutation.isPending}
                   disabled={input.length === 0}
+                  className="dark:bg-black"
                 >
                   Post
                 </Button>

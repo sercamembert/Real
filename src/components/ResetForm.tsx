@@ -98,7 +98,7 @@ const EmailForm = ({ token }: Props) => {
       </Button>
       <Link
         href="/sign-in"
-        className="text-textGray text-xs hover:text-dark cursor-pointer items-center flex"
+        className="text-textGray text-xs hover:text-dark dark:hover:text-background cursor-pointer items-center flex"
       >
         <ChevronLeft width={13} height={13} /> Return to Sign In
       </Link>

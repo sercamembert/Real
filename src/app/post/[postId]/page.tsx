@@ -10,6 +10,7 @@ import { formatTimeToNow } from "@/lib/utils";
 import { Dot } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import React, { createContext } from "react";
 
 interface PageProps {
   params: {
@@ -34,7 +35,7 @@ const page = async ({ params }: PageProps) => {
   if (!post) return notFound();
 
   return (
-    <div className="break-words  w-full md:w-[600px] 2xl:w-[700px] bg-white rounded-xl border border-gray-200 flex flex-col p-4 py-6 gap-2">
+    <div className="break-words  w-full md:w-[600px] 2xl:w-[700px] bg-white dark:bg-dark rounded-xl border border-gray-200 flex flex-col p-4 py-6 gap-2">
       <div className="w-full flex items-center">
         <Link href={`/profile/${post.authorId}`} className="flex items-center ">
           <UserAvatar
@@ -45,7 +46,7 @@ const page = async ({ params }: PageProps) => {
             w={30}
             h={30}
           />
-          <p className="font-semibold font-secoundary pl-1 text-dark hover:text-textGray">
+          <p className="font-semibold font-secoundary pl-1  hover:text-textGray">
             {post.author.name}
           </p>
         </Link>
@@ -56,9 +57,7 @@ const page = async ({ params }: PageProps) => {
           </p>
         </div>
       </div>
-      <h1 className="text-2xl font-semibold py-2 leading-6 text-dark">
-        {post.title}
-      </h1>
+      <h1 className="text-2xl font-semibold py-2 leading-6 ">{post.title}</h1>
 
       <EditorOutput content={post.content} />
 

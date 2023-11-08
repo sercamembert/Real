@@ -182,7 +182,7 @@ export const Editor = () => {
 
   return (
     <div>
-      <div className="w-full xl:w-[700px] 2xl:w-[800px] p-4 bg-zinc-50 rounded-lg border border-zinc-200">
+      <div className="w-full xl:w-[700px] 2xl:w-[800px] p-4 bg-zinc-50 rounded-lg border border-zinc-200 dark:bg-dark">
         <form
           id="post-form"
           className="w-full"
@@ -199,7 +199,10 @@ export const Editor = () => {
               placeholder="Title"
               className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
             />
-            <div id="editor" className="min-h-[500px] w-full" />
+            <div
+              id="editor"
+              className="min-h-[500px] w-full text-dark dark:text-background"
+            />
             <p className="text-sm text-gray-500">
               Use{" "}
               <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">

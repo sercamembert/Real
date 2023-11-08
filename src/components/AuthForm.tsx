@@ -159,7 +159,7 @@ const AuthForm = () => {
           {variant === "LOGIN" && (
             <Link
               href="/forgot-password"
-              className="text-textGray text-xs mt-1 pl-1 hover:text-dark cursor-pointer w-[110px]"
+              className="text-textGray text-xs mt-1 pl-1 hover:text-dark dark:hover:text-background cursor-pointer w-[110px]"
             >
               Forgot password?
             </Link>
@@ -181,7 +181,7 @@ const AuthForm = () => {
           </p>
           <div
             onClick={toggleVariant}
-            className="text-dark cursor-pointer hover:underline"
+            className=" cursor-pointer hover:underline"
           >
             {variant === "LOGIN" ? "Create an account" : "Sign in"}
           </div>
@@ -200,7 +200,7 @@ const AuthForm = () => {
               <div className="w-full border-t border-outlineGray" />
             </div>
             <div className="relative flex justify-center text-sm ">
-              <span className="px-2 text-textGray bg-background">
+              <span className="px-2 text-textGray bg-background dark:bg-black">
                 Or continue with
               </span>
             </div>
