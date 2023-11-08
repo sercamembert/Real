@@ -30,7 +30,7 @@ const Navbar = async () => {
             <Button>Sign In</Button>
           </Link>
         ) : (
-          <Link href="/profile" className="">
+          <Link href={`/profile/${currentUser.id}`} className="">
             <UserAvatar
               image={
                 currentUser?.image ||
@@ -86,7 +86,7 @@ const Navbar = async () => {
           </Link>
         ) : (
           <Link
-            href="/profile"
+            href={`/profile/${currentUser.id}`}
             className="flex lg:gap-2 items-center mt-4 lg:hover:bg-gray-100 lg:w-full lg:p-2 lg:rounded-xl"
           >
             <Avatar className="w-[35px] h-[35px]">
@@ -97,9 +97,7 @@ const Navbar = async () => {
                 }
               />
             </Avatar>
-            <p className="hidden text-xl font-medium lg:inline pt-1">
-              {currentUser.name}
-            </p>
+            <p className="hidden text-xl font-medium lg:inline pt-1">Profile</p>
           </Link>
         )}
       </div>

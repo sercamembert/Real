@@ -8,6 +8,7 @@ import UserAvatar from "@/components/UserAvatar";
 import { db } from "@/lib/prismadb";
 import { formatTimeToNow } from "@/lib/utils";
 import { Dot } from "lucide-react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -35,17 +36,19 @@ const page = async ({ params }: PageProps) => {
   return (
     <div className="break-words  w-full md:w-[600px] 2xl:w-[700px] bg-white rounded-xl border border-gray-200 flex flex-col p-4 py-6 gap-2">
       <div className="w-full flex items-center">
-        <UserAvatar
-          image={
-            post.author.image ||
-            "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-          }
-          w={30}
-          h={30}
-        />
-        <p className="font-semibold font-secoundary pl-1 text-dark">
-          {post.author.name}
-        </p>
+        <Link href={`/profile/${post.authorId}`} className="flex items-center ">
+          <UserAvatar
+            image={
+              post.author.image ||
+              "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
+            }
+            w={30}
+            h={30}
+          />
+          <p className="font-semibold font-secoundary pl-1 text-dark hover:text-textGray">
+            {post.author.name}
+          </p>
+        </Link>
         <div className="flex text-textGray items-center">
           <Dot width={15} height={15} />
           <p className="font-secoundary text-xs">

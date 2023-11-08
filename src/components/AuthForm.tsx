@@ -125,7 +125,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-3">
+    <div className="h-full w-full flex flex-col gap-3">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
         {variant === "REGISTER" && (
           <Input

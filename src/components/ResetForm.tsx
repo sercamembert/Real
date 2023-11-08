@@ -9,7 +9,6 @@ import { PasswordRequest } from "@/lib/validators/password";
 import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 
 interface Props {
   token: string;

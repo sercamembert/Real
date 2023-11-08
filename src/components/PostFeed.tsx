@@ -34,7 +34,6 @@ const PostFeed = ({
   });
   const { data: session } = useSession();
   const PAGE_SIZE = 5;
-  console.log(postCount);
 
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery({

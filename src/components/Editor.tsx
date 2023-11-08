@@ -43,7 +43,6 @@ export const Editor = () => {
     mutationFn: async ({ title, content }: PostCreationRequest) => {
       const payload: PostCreationRequest = { title, content };
       const { data } = await axios.post("/api/post/create", payload);
-      console.log(data);
       return data;
     },
     onSuccess: (data) => {

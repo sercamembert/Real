@@ -17,8 +17,6 @@ export async function GET(req: Request) {
         userId: url.searchParams.get("userId"),
       });
 
-    console.log(limit, page);
-
     const posts = await db.post.findMany({
       where: {
         authorId: userId,
