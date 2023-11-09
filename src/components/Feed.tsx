@@ -1,7 +1,6 @@
 "use client";
 import { Comment, Like, Post, User } from "@prisma/client";
-import { useSession } from "next-auth/react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useIntersection } from "@mantine/hooks";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -13,45 +12,21 @@ export type ExtendedPost = Post & {
   comments: Comment[];
   author: User;
 };
-
 interface Props {
-  initialPosts: ExtendedPost[];
   currentUserId: string | undefined;
-  postCount: number;
-  userId: string;
 }
-
-const PostFeed = ({
-  initialPosts,
-  currentUserId,
-  postCount,
-  userId,
-}: Props) => {
+const Feed = ({ currentUserId }: Props) => {
   const lastPostRef = useRef<HTMLElement>(null);
   const { ref, entry } = useIntersection({
     root: lastPostRef.current,
     threshold: 1,
   });
-  const { data: session } = useSession();
-  const PAGE_SIZE = 5;
 
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery({
       queryKey: ["infinite-query"],
       queryFn: async ({ pageParam = 1 }) => {
-        let limit = postCount < PAGE_SIZE ? postCount : PAGE_SIZE; // Ustaw limit na postCount, jeśli jest mniejszy niż PAGE_SIZE, w przeciwnym razie na PAGE_SIZE
-
-        if (pageParam !== 1) {
-          const remainingPosts = postCount - (pageParam - 1) * PAGE_SIZE;
-          // Ustaw limit na liczbę pozostałych postów lub na PAGE_SIZE, jeśli jest mniejszy
-          limit = Math.min(PAGE_SIZE, remainingPosts);
-        }
-
-        if (limit <= 0) {
-          return []; // Jeśli limit jest mniejszy lub równy 0, zwróć pustą tablicę
-        }
-
-        const query = `/api/posts/profile?limit=${limit}&page=${pageParam}&userId=${userId}`;
+        const query = `/api/posts/feed?limit=${5}&page=${pageParam}`;
 
         const { data } = await axios.get(query);
         return data as ExtendedPost[];
@@ -63,24 +38,25 @@ const PostFeed = ({
     });
 
   useEffect(() => {
-    if (
-      entry?.isIntersecting &&
-      hasNextPage &&
-      postCount !== pages.reduce((acc, page) => acc + page.length, 0)
-    ) {
-      if (postCount < PAGE_SIZE) return;
+    if (entry?.isIntersecting) {
+      if (!hasNextPage) return;
       fetchNextPage();
     }
-  }, [entry, fetchNextPage]);
+  }, [entry, fetchNextPage, hasNextPage]);
 
-  const pages = data?.pages ?? [initialPosts];
+  const pages = data?.pages;
 
   const posts =
-    pages.reduce((acc, page) => acc.concat(page), []) ?? initialPosts;
+    pages !== undefined
+      ? pages?.reduce((acc, page) => acc.concat(page), [])
+      : [];
+
+  console.log(posts);
 
   return (
-    <ul className="flex flex-col col-span-2 space-y-6">
+    <ul className="w-full flex flex-col col-span-2 space-y-6">
       {posts &&
+        posts.length > 0 &&
         posts?.map((post, index) => {
           if (index === posts.length - 1) {
             return (
@@ -108,4 +84,4 @@ const PostFeed = ({
   );
 };
 
-export default PostFeed;
+export default Feed;

@@ -12,7 +12,7 @@ import Link from "next/link";
 
 interface Props {
   post: ExtendedPost;
-  currentUserId: string | undefined | null;
+  currentUserId: string | undefined;
 }
 
 const UserPost = ({ post, currentUserId }: Props) => {
