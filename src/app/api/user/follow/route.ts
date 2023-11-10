@@ -31,6 +31,22 @@ export async function PATCH(req: Request) {
         },
       });
       isFollowed = true;
+
+      const notification = await db.notification.findFirst({
+        where: {
+          userId,
+          content: `${user.name} has followed you`,
+        },
+      });
+
+      if (!notification) {
+        await db.notification.create({
+          data: {
+            userId,
+            content: `${user.name} has followed you`,
+          },
+        });
+      }
     }
 
     return new Response(JSON.stringify({ isFollowed }), {

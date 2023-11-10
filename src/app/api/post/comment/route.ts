@@ -15,7 +15,7 @@ export async function PATCH(req: Request) {
       return new Response("Unauthorized", { status: 401 });
     }
 
-    await db?.comment.create({
+    await db.comment.create({
       data: {
         text,
         postId,
@@ -23,6 +23,44 @@ export async function PATCH(req: Request) {
         replyToId,
       },
     });
+
+    const post = await db.post.findUnique({
+      where: {
+        id: postId,
+      },
+    });
+
+    if (user.id !== post?.authorId && post) {
+      await db.notification.create({
+        data: {
+          userId: post?.authorId,
+          content: `${user.name} comment your post`,
+          postId: postId,
+        },
+      });
+
+      if (replyToId) {
+        const reply = await db.comment.findFirst({
+          where: {
+            id: replyToId,
+          },
+          include: {
+            author: true,
+          },
+        });
+
+        if (reply && reply.authorId !== user.id) {
+          await db.notification.create({
+            data: {
+              userId: reply.author.id,
+              content: `${user.name} replied to your comment`,
+              postId: postId,
+            },
+          });
+        }
+      }
+    }
+
     return new Response("OK");
   } catch (error) {
     if (error instanceof z.ZodError) {

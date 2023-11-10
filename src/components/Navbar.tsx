@@ -10,8 +10,20 @@ import getCurrentUser from "@/actions/getCurrentUser";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import UserAvatar from "./UserAvatar";
 import More from "./More";
+import { db } from "@/lib/prismadb";
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
+  const userNotifications = await db.notification.findMany({
+    where: {
+      userId: currentUser?.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      user: true,
+    },
+  });
   return (
     <div
       className=" w-full md:w-24 lg:w-56 xl:w-80 h-16 md:h-full fixed bottom-0 md:left-0 z-10 bg-white border-t-[1px] md:border-t-0 md:border-r-[1px] border-outlineGray
@@ -25,7 +37,7 @@ const Navbar = async () => {
         <Link href="/create">
           <PlusSquare width={35} height={35} />
         </Link>
-        <Notifications />
+        <Notifications notify={userNotifications} />
         {!currentUser ? (
           <Link href="sign-in">
             <Button>Sign In</Button>
@@ -66,7 +78,7 @@ const Navbar = async () => {
           <p className="hidden text-xl font-medium lg:inline pt-1">Search</p>
         </div>
 
-        <Notifications />
+        <Notifications notify={userNotifications} />
 
         <Link
           href="/create"

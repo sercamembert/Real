@@ -31,6 +31,30 @@ export async function PATCH(req: Request) {
         },
       });
       isLiked = true;
+
+      const post = await db.post.findFirst({
+        where: {
+          id: postId,
+        },
+      });
+
+      const isNotification = await db.notification.findFirst({
+        where: {
+          content: `${user.name} like your post`,
+          userId: post?.authorId,
+          postId,
+        },
+      });
+
+      if (post && post.authorId !== user.id && !isNotification) {
+        await db.notification.create({
+          data: {
+            postId,
+            userId: post.authorId,
+            content: `${user.name} liked your post`,
+          },
+        });
+      }
     }
 
     return new Response(JSON.stringify({ isLiked }), {

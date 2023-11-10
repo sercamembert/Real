@@ -49,7 +49,7 @@ const UserProfile = async ({ user, currentUser }: Props) => {
       />
       <div className="flex flex-col">
         <div className="flex gap-3 items-center">
-          <h1 className="font-secoundary text-2xl font-semibold">
+          <h1 className="font-secoundary md:text-2xl font-semibold">
             {user.name}
           </h1>
           {currentUser?.id !== user.id && (
