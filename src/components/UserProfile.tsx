@@ -11,6 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import Image from "next/image";
 
 export type ExtendedPost = Post & {
   comments: Comment[];
@@ -38,16 +39,21 @@ const UserProfile = async ({ user, currentUser }: Props) => {
     },
   });
   return (
-    <div className="w-full flex gap-3">
-      <UserAvatar
-        image={
-          user.image ||
-          "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-        }
-        h={80}
-        w={80}
-      />
-      <div className="flex flex-col">
+    <div className="h-full w-full flex justify-center gap-3 ">
+      <div className="min-w-[80px] max-h-[80px] w-[80px] h-[80px] flex-grow">
+        <Image
+          src={
+            user.image ||
+            "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
+          }
+          alt="user avatar"
+          className="w-full aspect-square h-full rounded-[50%]"
+          width={80}
+          height={80}
+        />
+      </div>
+
+      <div className="h-full flex flex-col w-full relative overflow-clip">
         <div className="flex gap-3 items-center">
           <h1 className="font-secoundary md:text-2xl font-semibold">
             {user.name}
@@ -65,8 +71,11 @@ const UserProfile = async ({ user, currentUser }: Props) => {
           <p className="text-xs md:text-sm">Followers:{follows?.length}</p>
           <p className="text-xs md:text-sm">Following:{following.length}</p>
         </div>
+        <p className="text-xs md:text-sm pt-2 break-words w-auto whitespace-pre-wrap">
+          {user.description}
+        </p>
       </div>
-      <p className="text-xs md:text-sm">{user.description}</p>
+      <div></div>
       {user.id === currentUser?.id && (
         <Link href={"/settings"} className="ml-auto h-[20px]">
           <TooltipProvider>

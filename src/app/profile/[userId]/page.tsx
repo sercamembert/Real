@@ -49,9 +49,9 @@ const page = async ({ params }: PageProps) => {
   });
 
   return (
-    <div className="w-full md:w-[600px] 2xl:w-[700px] flex flex-col gap-2">
+    <div className="h-full w-full md:w-[600px] 2xl:w-[700px] flex flex-col gap-2">
       <UserProfile user={user} currentUser={currentUser} />
-      <div className="border-b my-1 border-outlineGray w-full"></div>
+      <div className="border-b my-1 border-outlineGray w-full pt-5"></div>
       <PostFeed
         initialPosts={posts}
         currentUserId={currentUser?.id}

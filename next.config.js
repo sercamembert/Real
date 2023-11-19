@@ -8,6 +8,7 @@ const nextConfig = {
       "uploadthing.com",
       "utfs.io",
       "i1.sndcdn.com",
+      "files.edgestore.dev",
     ],
   },
 };
