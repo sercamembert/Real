@@ -47,7 +47,7 @@ function CustomImageRenderer({ data }: any) {
       <div className="w-full h-full flex items-center justify-center">
         <Image
           alt="image"
-          className=" h-full"
+          className="h-full"
           src={src}
           width={500}
           height={500}
