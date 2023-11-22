@@ -56,6 +56,7 @@ const Notifications = ({ notify }: Props) => {
           <div className="h-full w-full flex flex-col gap-2 pt-5">
             {notify.map((notification, key) => (
               <Link
+                key={key}
                 href={notification.postId ? `/post/${notification.postId}` : ""}
                 className="w-full flex items-center hover:bg-gray-100 p-2 rounded-xl dark:hover:bg-zinc-950"
               >

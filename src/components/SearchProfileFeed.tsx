@@ -15,8 +15,9 @@ const SearchProfileFeed = ({ profiles }: Props) => {
       )}
       {profiles &&
         profiles.length > 0 &&
-        profiles.map((profile) => (
+        profiles.map((profile, index) => (
           <Link
+            key={index}
             href={`/profile/${profile.id}`}
             className="flex gap-2 w-full items-center p-2 bg-gray-200 dark:bg-dark dark:hover:bg-zinc-900 hover:bg-gray-300 rounded-[8px]"
           >
