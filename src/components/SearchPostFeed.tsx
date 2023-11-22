@@ -54,7 +54,7 @@ const SearchPostFeed = async ({ params }: Props) => {
     orderBy: orderBy,
   });
   return (
-    <ul className="flex flex-col col-span-2 space-y-6 pt-5">
+    <ul className="flex w-full flex-col col-span-2 space-y-6 pt-5">
       {posts && posts.length === 0 && (
         <p className="text-sm text-textGray ">No results...</p>
       )}
