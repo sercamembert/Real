@@ -14,8 +14,9 @@ export type ExtendedPost = Post & {
 };
 interface Props {
   currentUserId: string | undefined;
+  initialPosts: ExtendedPost[];
 }
-const Feed = ({ currentUserId }: Props) => {
+const Feed = ({ currentUserId, initialPosts }: Props) => {
   const lastPostRef = useRef<HTMLElement>(null);
   const { ref, entry } = useIntersection({
     root: lastPostRef.current,
@@ -26,7 +27,7 @@ const Feed = ({ currentUserId }: Props) => {
     useInfiniteQuery({
       queryKey: ["infinite-query"],
       queryFn: async ({ pageParam = 1 }) => {
-        const query = `/api/posts/feed?limit=${5}&page=${pageParam}`;
+        const query = `/api/posts/feed?limit=${10}&page=${pageParam}`;
 
         const { data } = await axios.get(query);
         return data as ExtendedPost[];
@@ -39,32 +40,30 @@ const Feed = ({ currentUserId }: Props) => {
 
   useEffect(() => {
     if (entry?.isIntersecting) {
+      if (!hasNextPage) return;
       fetchNextPage();
     }
-  }, [entry, fetchNextPage]);
-
-  const pages = data?.pages;
+  }, [entry, fetchNextPage, hasNextPage]);
+  const pages = data?.pages ?? [initialPosts];
 
   const posts =
-    pages !== undefined
-      ? pages?.reduce((acc, page) => acc.concat(page), [])
-      : [];
-
+    pages.reduce((acc, page) => acc.concat(page), []) ?? initialPosts;
   return (
     <ul className="w-full flex flex-col col-span-2 space-y-6">
-      {posts.map((post, index) => {
-        if (index === posts.length - 1) {
-          return (
-            <li key={post.id} ref={ref}>
-              <UserPost post={post} currentUserId={currentUserId} />
-            </li>
-          );
-        } else {
-          return (
-            <UserPost key={post.id} post={post} currentUserId={currentUserId} />
-          );
-        }
-      })}
+      {posts &&
+        posts?.map((post, index) => {
+          if (index === posts.length - 1) {
+            return (
+              <li key={index} ref={ref}>
+                <UserPost post={post} currentUserId={currentUserId} />
+              </li>
+            );
+          } else {
+            return (
+              <UserPost key={index} post={post} currentUserId={currentUserId} />
+            );
+          }
+        })}
 
       {isFetchingNextPage && (
         <li className="flex justify-center">

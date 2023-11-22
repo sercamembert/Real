@@ -39,7 +39,7 @@ const PostFeed = ({
     useInfiniteQuery({
       queryKey: ["infinite-query"],
       queryFn: async ({ pageParam = 1 }) => {
-        const query = `/api/posts/profile?limit=${1}&page=${pageParam}&userId=${userId}`;
+        const query = `/api/posts/profile?limit=${10}&page=${pageParam}&userId=${userId}`;
 
         const { data } = await axios.get(query);
         return data as ExtendedPost[];

@@ -83,7 +83,6 @@ export async function GET(req: Request) {
 
       allPosts = [...followedUserPosts, ...remainingUserPosts];
     }
-
     return new Response(JSON.stringify(allPosts));
   } catch (error) {
     return new Response("Could not fetch posts", { status: 500 });
