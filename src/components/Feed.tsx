@@ -26,7 +26,7 @@ const Feed = ({ currentUserId }: Props) => {
     useInfiniteQuery({
       queryKey: ["infinite-query"],
       queryFn: async ({ pageParam = 1 }) => {
-        const query = `/api/posts/feed?limit=${1}&page=${pageParam}`;
+        const query = `/api/posts/feed?limit=${5}&page=${pageParam}`;
 
         const { data } = await axios.get(query);
         return data as ExtendedPost[];
@@ -39,10 +39,9 @@ const Feed = ({ currentUserId }: Props) => {
 
   useEffect(() => {
     if (entry?.isIntersecting) {
-      if (!hasNextPage) return;
       fetchNextPage();
     }
-  }, [entry, fetchNextPage, hasNextPage]);
+  }, [entry, fetchNextPage]);
 
   const pages = data?.pages;
 
@@ -53,25 +52,19 @@ const Feed = ({ currentUserId }: Props) => {
 
   return (
     <ul className="w-full flex flex-col col-span-2 space-y-6">
-      {posts &&
-        posts.length > 0 &&
-        posts?.map((post, index) => {
-          if (index === posts.length - 1) {
-            return (
-              <li key={post.id} ref={ref}>
-                <UserPost post={post} currentUserId={currentUserId} />
-              </li>
-            );
-          } else {
-            return (
-              <UserPost
-                key={post.id}
-                post={post}
-                currentUserId={currentUserId}
-              />
-            );
-          }
-        })}
+      {posts.map((post, index) => {
+        if (index === posts.length - 1) {
+          return (
+            <li key={post.id} ref={ref}>
+              <UserPost post={post} currentUserId={currentUserId} />
+            </li>
+          );
+        } else {
+          return (
+            <UserPost key={post.id} post={post} currentUserId={currentUserId} />
+          );
+        }
+      })}
 
       {isFetchingNextPage && (
         <li className="flex justify-center">

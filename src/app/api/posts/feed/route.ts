@@ -1,4 +1,5 @@
 import getCurrentUser from "@/actions/getCurrentUser";
+import { ExtendedPost } from "@/components/Feed";
 import { db } from "@/lib/prismadb";
 import { z } from "zod";
 
@@ -18,7 +19,7 @@ export async function GET(req: Request) {
         page: url.searchParams.get("page"),
       });
 
-    let allPosts;
+    let allPosts: ExtendedPost[];
 
     if (!user) {
       allPosts = await db.post.findMany({
