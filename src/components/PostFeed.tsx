@@ -39,19 +39,7 @@ const PostFeed = ({
     useInfiniteQuery({
       queryKey: ["infinite-query"],
       queryFn: async ({ pageParam = 1 }) => {
-        let limit = postCount < PAGE_SIZE ? postCount : PAGE_SIZE; // Ustaw limit na postCount, jeśli jest mniejszy niż PAGE_SIZE, w przeciwnym razie na PAGE_SIZE
-
-        if (pageParam !== 1) {
-          const remainingPosts = postCount - (pageParam - 1) * PAGE_SIZE;
-          // Ustaw limit na liczbę pozostałych postów lub na PAGE_SIZE, jeśli jest mniejszy
-          limit = Math.min(PAGE_SIZE, remainingPosts);
-        }
-
-        if (limit <= 0) {
-          return []; // Jeśli limit jest mniejszy lub równy 0, zwróć pustą tablicę
-        }
-
-        const query = `/api/posts/profile?limit=${limit}&page=${pageParam}&userId=${userId}`;
+        const query = `/api/posts/profile?limit=${1}&page=${pageParam}&userId=${userId}`;
 
         const { data } = await axios.get(query);
         return data as ExtendedPost[];
@@ -63,15 +51,11 @@ const PostFeed = ({
     });
 
   useEffect(() => {
-    if (
-      entry?.isIntersecting &&
-      hasNextPage &&
-      postCount !== pages.reduce((acc, page) => acc + page.length, 0)
-    ) {
-      if (postCount < PAGE_SIZE) return;
+    if (entry?.isIntersecting) {
+      if (!hasNextPage) return;
       fetchNextPage();
     }
-  }, [entry, fetchNextPage]);
+  }, [entry, fetchNextPage, hasNextPage]);
 
   const pages = data?.pages ?? [initialPosts];
 

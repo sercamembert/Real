@@ -26,7 +26,7 @@ const Feed = ({ currentUserId }: Props) => {
     useInfiniteQuery({
       queryKey: ["infinite-query"],
       queryFn: async ({ pageParam = 1 }) => {
-        const query = `/api/posts/feed?limit=${5}&page=${pageParam}`;
+        const query = `/api/posts/feed?limit=${1}&page=${pageParam}`;
 
         const { data } = await axios.get(query);
         return data as ExtendedPost[];
