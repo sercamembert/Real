@@ -6,11 +6,14 @@ const auth = (req: Request) => ({ id: "fakeId" });
 
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB" } })
-    .middleware(async (req: any) => {
+    .middleware(async ({ req }) => {
+      // This code runs on your server before upload
       const user = await auth(req);
 
+      // If you throw, the user will not be able to upload
       if (!user) throw new Error("Unauthorized");
 
+      // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {}),
