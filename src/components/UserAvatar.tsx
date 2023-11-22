@@ -14,7 +14,7 @@ const UserAvatar = ({ image, w, h }: Props) => {
       alt="profile picture"
       width={w}
       height={h}
-      className="rounded-[50%]"
+      className="rounded-[50%] aspect-square"
     />
   );
 };

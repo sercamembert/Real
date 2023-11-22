@@ -68,7 +68,7 @@ const SettingsForm = ({ currentUser }: Props) => {
   });
 
   return (
-    <div className="w-full flex flex-col item-center justify-center gap-3">
+    <div className="w-full sm:w-2/3 sm:m-auto md:w-full flex flex-col item-center justify-center gap-3">
       <div className=" flex flex-col gap-1 w-full items-center">
         <label
           htmlFor="upload-photo"

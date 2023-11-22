@@ -51,8 +51,6 @@ const Feed = ({ currentUserId }: Props) => {
       ? pages?.reduce((acc, page) => acc.concat(page), [])
       : [];
 
-  console.log(posts);
-
   return (
     <ul className="w-full flex flex-col col-span-2 space-y-6">
       {posts &&

@@ -7,7 +7,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import UserAvatar from "./UserAvatar";
 import Link from "next/link";
 import { formatTimeToNow } from "@/lib/utils";
@@ -25,23 +24,19 @@ const Notifications = ({ notify }: Props) => {
   const [isWideScreen, setIsWideScreen] = useState(true);
   useEffect(() => {
     const handleResize = () => {
-      setIsWideScreen(window.innerWidth > 768);
+      setIsWideScreen(window.innerWidth >= 768);
     };
-
-    // Ustawianie początkowej szerokości ekranu
     handleResize();
 
-    // Dodanie nasłuchiwania na zmiany rozmiaru okna
     window.addEventListener("resize", handleResize);
 
-    // Usunięcie nasłuchiwania, gdy komponent jest odmontowywany
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger className="md:w-full flex justify-center">
         <div className="flex lg:gap-2  items-center md:mt-4 lg:hover:bg-gray-100 dark:lg:hover:bg-dark lg:w-full lg:p-2 lg:rounded-xl cursor-pointer">
           <Bell width={35} height={35} />
           <p className="hidden text-xl font-medium lg:inline pt-1">
@@ -51,7 +46,7 @@ const Notifications = ({ notify }: Props) => {
       </PopoverTrigger>
       <PopoverContent
         className="w-screen max-w-[500px] max-h-[400px]  bg-white dark:bg-dark overflow-y-scroll 
-      md:ml-6 md:min-h-screen"
+       md:min-h-screen"
         side={isWideScreen ? "right" : "bottom"}
       >
         <div className="flex flex-col w-full h-full ">
@@ -81,6 +76,11 @@ const Notifications = ({ notify }: Props) => {
                 </div>
               </Link>
             ))}
+            {notify.length == 0 && (
+              <div>
+                <p>There is no notifications yet...</p>
+              </div>
+            )}
           </div>
         </div>
       </PopoverContent>

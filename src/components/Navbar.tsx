@@ -1,4 +1,5 @@
-import { Bell, Home, Menu, PlusSquare, Search } from "lucide-react";
+import { Bell, Home, Menu, PlusSquare } from "lucide-react";
+import Search from "./Search";
 import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -43,7 +44,7 @@ const Navbar = async () => {
             <Button>Sign In</Button>
           </Link>
         ) : (
-          <Link href={`/profile/${currentUser.id}`} className="">
+          <Link href={`/profile/${currentUser.id}`} className="h-full">
             <UserAvatar
               image={
                 currentUser?.image ||
@@ -73,10 +74,7 @@ const Navbar = async () => {
           <p className="hidden text-xl font-medium lg:inline pt-1">Home</p>
         </Link>
 
-        <div className="flex gap-2 items-center mt-4 lg:hover:bg-gray-100 dark:lg:hover:bg-dark lg:w-full lg:p-2 lg:rounded-xl cursor-pointer">
-          <Search width={35} height={35} />
-          <p className="hidden text-xl font-medium lg:inline pt-1">Search</p>
-        </div>
+        <Search />
 
         <Notifications notify={userNotifications} />
 
