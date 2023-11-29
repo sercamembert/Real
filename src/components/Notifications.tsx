@@ -18,9 +18,10 @@ type userNotification = Notification & {
 
 interface Props {
   notify: userNotification[];
+  currentUser: User | undefined | null;
 }
 
-const Notifications = ({ notify }: Props) => {
+const Notifications = ({ notify, currentUser }: Props) => {
   const [isWideScreen, setIsWideScreen] = useState(true);
   useEffect(() => {
     const handleResize = () => {
@@ -54,30 +55,33 @@ const Notifications = ({ notify }: Props) => {
             Notifications
           </h1>
           <div className="h-full w-full flex flex-col gap-2 pt-5">
-            {notify.map((notification, key) => (
-              <Link
-                key={key}
-                href={notification.postId ? `/post/${notification.postId}` : ""}
-                className="w-full flex items-center hover:bg-gray-100 p-2 rounded-xl dark:hover:bg-zinc-950"
-              >
-                <UserAvatar
-                  image={
-                    notification.user.image ||
-                    "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
+            {currentUser &&
+              notify.map((notification, key) => (
+                <Link
+                  key={key}
+                  href={
+                    notification.postId ? `/post/${notification.postId}` : ""
                   }
-                  w={30}
-                  h={30}
-                />
-                <p className="pl-2">{notification.content}</p>
-                <div className="flex text-textGray items-center">
-                  <Dot width={15} height={15} />
-                  <p className="font-secoundary text-xs">
-                    {formatTimeToNow(new Date(notification.createdAt))}
-                  </p>
-                </div>
-              </Link>
-            ))}
-            {notify.length == 0 && (
+                  className="w-full flex items-center hover:bg-gray-100 p-2 rounded-xl dark:hover:bg-zinc-950"
+                >
+                  <UserAvatar
+                    image={
+                      notification.user.image ||
+                      "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
+                    }
+                    w={30}
+                    h={30}
+                  />
+                  <p className="pl-2">{notification.content}</p>
+                  <div className="flex text-textGray items-center">
+                    <Dot width={15} height={15} />
+                    <p className="font-secoundary text-xs">
+                      {formatTimeToNow(new Date(notification.createdAt))}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            {notify.length && (
               <div>
                 <p>There is no notifications yet...</p>
               </div>

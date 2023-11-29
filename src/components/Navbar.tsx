@@ -38,7 +38,7 @@ const Navbar = async () => {
         <Link href="/create">
           <PlusSquare width={35} height={35} />
         </Link>
-        <Notifications notify={userNotifications} />
+        <Notifications notify={userNotifications} currentUser={currentUser} />
         {!currentUser ? (
           <Link href="sign-in">
             <Button>Sign In</Button>
@@ -76,7 +76,7 @@ const Navbar = async () => {
 
         <Search />
 
-        <Notifications notify={userNotifications} />
+        <Notifications notify={userNotifications} currentUser={currentUser} />
 
         <Link
           href="/create"
