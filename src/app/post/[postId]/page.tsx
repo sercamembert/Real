@@ -76,7 +76,7 @@ const page = async ({ params }: PageProps) => {
         <div className="flex gap-5 items-center">
           <PostLike post={post} userId={currentUser?.id} />
           <CommentsCount commentsCount={post.comments.length} />
-          <PostShare path={`http://localhost:3000/post/${postId}`} />
+          <PostShare path={`https://real-gules.vercel.app/post/${postId}`} />
         </div>
       </div>
 

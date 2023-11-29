@@ -58,7 +58,7 @@ const UserPost = ({ post, currentUserId }: Props) => {
         <a href={`/post/${post.id}`}>
           <CommentsCount commentsCount={post.comments.length} />
         </a>
-        <PostShare path={`localhost:3000/post/${post.id}`} />
+        <PostShare path={`https://real-gules.vercel.app/post/${post.id}`} />
       </div>
     </div>
   );

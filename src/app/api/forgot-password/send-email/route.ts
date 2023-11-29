@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const url = `http://localhost:3000/password-reset/${token?.token}}`;
+    const url = `https://real-gules.vercel.app/password-reset/${token?.token}}`;
     const html = render(
       ForgotPasswordEmail({
         params: {
