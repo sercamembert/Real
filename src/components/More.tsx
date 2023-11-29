@@ -23,7 +23,7 @@ const More = () => {
             <Menu width={35} height={35} />
             <p className="hidden text-xl  lg:inline pt-1">More</p>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white dark:bg-dark p-4 rounded-[8px] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] mr-3 mt-1 md:mr-0 md:ml-8  lg:w-[250px] xl:ml-0 min-w-[200px] cursor-default">
+          <DropdownMenuContent className=" bg-white dark:bg-dark p-4 rounded-[8px] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] mr-3 mt-1 md:mr-0 md:ml-8  lg:w-[250px] xl:ml-0 min-w-[200px] cursor-default">
             <DropdownMenuItem className="py-3 flex gap-3 items-center borde-none outline-none hover:text-outlineGray cursor-pointer">
               <Settings className="w-[20px] h-[20px]" />
               Settings
