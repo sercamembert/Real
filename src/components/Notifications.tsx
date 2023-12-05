@@ -81,11 +81,12 @@ const Notifications = ({ notify, currentUser }: Props) => {
                   </div>
                 </Link>
               ))}
-            {notify.length && (
-              <div>
-                <p>There is no notifications yet...</p>
-              </div>
-            )}
+            {notify.length == 0 ||
+              (!currentUser && (
+                <div>
+                  <p>There is no notifications yet...</p>
+                </div>
+              ))}
           </div>
         </div>
       </PopoverContent>
