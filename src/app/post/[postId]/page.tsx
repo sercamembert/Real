@@ -43,14 +43,7 @@ const page = async ({ params }: PageProps) => {
             href={`/profile/${post.authorId}`}
             className="flex items-center "
           >
-            <UserAvatar
-              image={
-                post.author.image ||
-                "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-              }
-              w={30}
-              h={30}
-            />
+            <UserAvatar image={post.author.image} w={30} h={30} />
             <p className="font-semibold font-secoundary pl-1  hover:text-textGray">
               {post.author.name}
             </p>

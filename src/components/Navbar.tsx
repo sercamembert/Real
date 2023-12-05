@@ -45,14 +45,7 @@ const Navbar = async () => {
           </Link>
         ) : (
           <Link href={`/profile/${currentUser.id}`} className="h-full">
-            <UserAvatar
-              image={
-                currentUser?.image ||
-                "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-              }
-              w={40}
-              h={40}
-            />
+            <UserAvatar image={currentUser?.image} w={40} h={40} />
           </Link>
         )}
       </div>

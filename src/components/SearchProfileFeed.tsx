@@ -21,14 +21,7 @@ const SearchProfileFeed = ({ profiles }: Props) => {
             href={`/profile/${profile.id}`}
             className="flex gap-2 w-full items-center p-2 bg-gray-200 dark:bg-dark dark:hover:bg-zinc-900 hover:bg-gray-300 rounded-[8px]"
           >
-            <UserAvatar
-              h={45}
-              w={45}
-              image={
-                profile.image ||
-                "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-              }
-            />
+            <UserAvatar h={45} w={45} image={profile.image} />
             <div className="flex flex-col">
               <p className="font-medium">{profile.name}</p>
               <p className="text-sm text-textGray">

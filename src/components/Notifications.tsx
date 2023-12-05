@@ -64,14 +64,7 @@ const Notifications = ({ notify, currentUser }: Props) => {
                   }
                   className="w-full flex items-center hover:bg-gray-100 p-2 rounded-xl dark:hover:bg-zinc-950"
                 >
-                  <UserAvatar
-                    image={
-                      notification.user.image ||
-                      "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-                    }
-                    w={30}
-                    h={30}
-                  />
+                  <UserAvatar image={notification.user.image} w={30} h={30} />
                   <p className="pl-2">{notification.content}</p>
                   <div className="flex text-textGray items-center">
                     <Dot width={15} height={15} />

@@ -21,14 +21,7 @@ const UserPost = ({ post, currentUserId }: Props) => {
     <div className="w-full bg-white dark:bg-dark rounded-xl border border-gray-200 px-4 pt-2">
       <div className="flex items-center ">
         <Link href={`/profile/${post.authorId}`} className="flex items-center">
-          <UserAvatar
-            image={
-              post?.author.image ||
-              "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-            }
-            w={30}
-            h={30}
-          />
+          <UserAvatar image={post?.author.image} w={30} h={30} />
           <p className="font-semibold font-secoundary pl-1  ">
             {post.author.name}
           </p>

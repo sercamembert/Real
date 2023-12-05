@@ -74,15 +74,7 @@ const SettingsForm = ({ currentUser }: Props) => {
           htmlFor="upload-photo"
           className="hover:brightness-75 cursor-pointer"
         >
-          <UserAvatar
-            image={
-              imageUrl ||
-              currentUser?.image ||
-              "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-            }
-            h={60}
-            w={60}
-          />
+          <UserAvatar image={imageUrl || currentUser?.image} h={60} w={60} />
         </label>
         <input
           type="file"

@@ -65,14 +65,7 @@ const PostComment = ({ comment, postId }: PostCommentProps) => {
   return (
     <div ref={commentRef} className="flex flex-col">
       <div className="flex items-center">
-        <UserAvatar
-          image={
-            comment.author.image ||
-            "https://i1.sndcdn.com/artworks-flIE8AIPtmdDD8Tb-y63vwg-t500x500.jpg"
-          }
-          h={26}
-          w={26}
-        />
+        <UserAvatar image={comment.author.image} h={26} w={26} />
         <div className="ml-2 flex items-center gap-x-2 ">
           <p className="text-sm font-medium text-fark0">
             {comment.author.name}
