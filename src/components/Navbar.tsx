@@ -101,7 +101,7 @@ const Navbar = async () => {
             <p className="hidden text-xl font-medium lg:inline pt-1">Profile</p>
           </Link>
         )}
-        <More />
+        <More currentUser={currentUser} />
       </div>
     </div>
   );
