@@ -48,12 +48,12 @@ const page = async ({ params }: PageProps) => {
               {post.author.name}
             </p>
           </Link>
-          <div className="flex text-textGray items-center">
+          {/* <div className="flex text-textGray items-center">
             <Dot width={15} height={15} />
             <p className="font-secoundary text-xs">
               {formatTimeToNow(new Date(post.createdAt))}
             </p>
-          </div>
+          </div> */}
         </div>
 
         {currentUser?.id === post.authorId && (

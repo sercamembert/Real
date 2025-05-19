@@ -27,12 +27,12 @@ const UserPost = ({ post, currentUserId }: Props) => {
           </p>
         </Link>
 
-        <div className="flex text-textGray items-center">
+        {/* <div className="flex text-textGray items-center">
           <Dot width={15} height={15} />
           <p className="font-secoundary text-xs">
             {formatTimeToNow(new Date(post.createdAt))}
           </p>
-        </div>
+        </div> */}
       </div>
       <a href={`/post/${post.id}`}>
         <h1 className="text-lg font-semibold py-2 leading-6 ">{post.title}</h1>
